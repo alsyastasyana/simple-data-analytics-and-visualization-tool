@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: 500;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        .list-group-item {
+            border: none;
+            padding: 10px 15px;
+        }
+        .list-group-item strong {
+            color: #495057;
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Analysis Results</h1>
+
+        <h2>Data Preview (Top 5 Rows)</h2>
+        {% for table in tables %}
+            <div class="table-responsive">
+                {{ table | safe }}
+            </div>
+        {% endfor %}
+
+        <h2>Summary Statistics</h2>
+        <ul class="list-group">
+            {% for key, value in summary.items() %}
+                <li class="list-group-item"><strong>{{ key }}</strong>: {{ value }}</li>
+            {% endfor %}
+        </ul>
+
+        {% if plot_html %}
+            <h2>Data Visualization</h2>
+            <div class="mt-3">
+                {{ plot_html | safe }}
+            </div>
+            
+        {% endif %}
+
+        <a href="/" class="btn btn-link mt-4">Go Back</a>
+    </div>
+</body>
+</html>

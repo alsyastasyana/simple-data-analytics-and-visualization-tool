@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV File</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+        .form-control-file {
+            border-radius: 4px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Data Analytics & Visualization Tool</h1>
+        <p class="text-center">Welcome to our Data Analytics & Visualization Tool. This tool allows you to upload CSV files, analyze the data, and visualize the result. Follow the instructions below to get started.</p>
+        
+        <h2>How to Use</h2>
+        <p>
+            1. Click on the "Choose File" button below to select a CSV file from your computer. The file should contain data in a comma-separated values format.
+            <br><br>
+            2. After selecting the file, click the "Submit" button to upload and analyze the data.
+            <br><br>
+            3. The tool will process your file and display a preview of the top 5 rows of the data, along with summary statistics and visualizations.
+            <br><br>
+            4. If you encounter any issues or see any error messages, they will be displayed at the top of the page.
+        </p>
+
+        <form action="/analyze" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Select CSV file:</label>
+                <input type="file" class="form-control-file" id="file" name="file" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
